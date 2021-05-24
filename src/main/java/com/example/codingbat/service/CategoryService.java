@@ -34,9 +34,8 @@ public class CategoryService {
                 queryRepository.save(query);
                 List<Query> queries = new ArrayList<>();
                 queries.add(query);
-                List<Language> languages = new ArrayList<>();
-                languages.add(optional.get());
-                Category category = new Category(categoryDto.getCategoryname(), languages, queries);
+                Language languages= optional.get();
+                Category category = new Category(categoryDto.getCategoryname(), languages);
                 categoryRepository.save(category);
                 return new ApiResponse("Ma'lumot saqlandi", true);
             } else {
@@ -53,17 +52,9 @@ public class CategoryService {
             Optional<Language> optional = languageRepository.findById(categoryDto.getLanguage_id());
             if (optional.isPresent()) {
                 Category category = optional1.get();
-                Query query = new Query(categoryDto.getQuerytext(), categoryDto.getGrade(), categoryDto.getSolution());
-                queryRepository.save(query);
-                List<Query> queries = category.getQuery();
-                queries.clear();
-                queries.add(query);
-                List<Language> languages = category.getLanguages();
-                languages.clear();
-                languages.add(optional.get());
+                Language languages= optional.get();
                 category.setCategoryname(categoryDto.getCategoryname());
-                category.setLanguages(languages);
-                category.setQuery(queries);
+                category.setLanguage(languages);
                 categoryRepository.save(category);
                 return new ApiResponse("Yangilandi", true);
             } else {
@@ -78,7 +69,6 @@ public class CategoryService {
         Optional<Category> optional = categoryRepository.findById(id);
         if (optional.isPresent()) {
             categoryRepository.deleteById(id);
-            queryRepository.delete(optional.get().getQuery().get(0));
             return new ApiResponse("O'chirildi", true);
         } else {
             return new ApiResponse("Bunday Category topilmadi", false);

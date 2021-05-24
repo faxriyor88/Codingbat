@@ -28,7 +28,7 @@ public class AnswerService {
         if (optional.isPresent()) {
             Optional<User> optional1 = userRepository.findById(answerDto.getUser_id());
             if (optional1.isPresent()) {
-                Answer answer = new Answer(answerDto.getAnswertext(), optional.get(), optional1.get(), answerDto.getMark());
+                Answer answer = new Answer(answerDto.getAnswertext(), optional.get(), optional1.get(), answerDto.isHasstar());
                 answerRepository.save(answer);
                 return new ApiResponse("Ma'lumot saqlandi", true);
             } else {
@@ -49,7 +49,7 @@ public class AnswerService {
                     answer.setAnswertext(answerDto.getAnswertext());
                     answer.setQuery(optional.get());
                     answer.setUser(optional1.get());
-                    answer.setMark(answerDto.getMark());
+                    answer.setHasstar(answerDto.isHasstar());
                     answerRepository.save(answer);
                     return new ApiResponse("Yangilandi", true);
                 } else {

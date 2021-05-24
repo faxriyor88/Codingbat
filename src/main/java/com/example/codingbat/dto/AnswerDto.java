@@ -15,6 +15,6 @@ public class AnswerDto {
     private Integer query_id;
     @NotNull(message = "user_id bo'sh bo'lmasligi kerak")
     private Integer user_id;
-    @NotNull(message = "mark bo'sh bo'lmasligi kerak")
-    private String mark;
+    @NotNull(message = "hasstar bo'sh bo'lmasligi kerak")
+    private boolean hasstar;
 }

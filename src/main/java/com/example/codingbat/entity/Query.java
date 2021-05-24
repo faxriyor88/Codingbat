@@ -21,6 +21,8 @@ public class Query {
     private String grade;
     @Column(nullable = false)@NotNull(message = "solution bo'sh bo'lmasligi kerak")
     private String solution;
+    @ManyToOne
+    private Category category;
 
     public Query(String text, String grade, String solution) {
         this.text = text;

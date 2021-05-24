@@ -17,14 +17,13 @@ public class Category {
     private Integer id;
     @Column(nullable = false)
     private String categoryname;
-    @ManyToMany
-    private List<Language> languages;
-    @OneToMany
-    private List<Query> query;
+    @ManyToOne
+    private Language language;
 
-    public Category(String categoryname, List<Language> languages, List<Query> query) {
+
+    public Category(String categoryname, Language language) {
         this.categoryname = categoryname;
-        this.languages = languages;
-        this.query = query;
+        this.language = language;
+
     }
 }

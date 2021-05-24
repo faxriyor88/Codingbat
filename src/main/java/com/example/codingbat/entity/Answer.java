@@ -21,12 +21,12 @@ public class Answer {
     @ManyToOne(optional = false)
     private User user;
     @Column(nullable = false)
-    private String mark;
+    private boolean hasstar;
 
-    public Answer(String answertext, Query query, User user, String mark) {
+    public Answer(String answertext, Query query, User user, boolean hasstar) {
         this.answertext = answertext;
         this.query = query;
         this.user = user;
-        this.mark = mark;
+        this.hasstar = hasstar;
     }
 }
